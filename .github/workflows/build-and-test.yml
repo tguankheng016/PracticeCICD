@@ -27,7 +27,6 @@ jobs:
       run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-build --verbosity normal
 
   deploy-staging:
-    needs: build
     name: Deploy To Staging
     runs-on: windows-latest
     steps:
