@@ -1,0 +1,27 @@
+name: "build and test"
+
+on: 
+  pull_request:
+    paths:
+    - 'TestCICD/**'
+
+jobs:
+  build:
+    name: Build And Test
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./TestCICD/TestCICD.csproj
+    - name: Build
+      run: dotnet build ./TestCICD/TestCICD.csproj --no-restore
+    - name: Restore Test Proj Dependencies
+      run: dotnet restore ./CICDUnitTest/CICDUnitTest.csproj
+    - name: Build Test Proj
+      run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-restore
+    - name: Test
+      run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-build --verbosity normal
