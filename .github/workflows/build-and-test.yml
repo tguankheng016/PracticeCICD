@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./TestCICD/TestCICD.csproj
     - name: Build
       run: dotnet build ./TestCICD/TestCICD.csproj --no-restore
     - name: Test
