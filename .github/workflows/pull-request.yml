@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Deploy To Prod
+    name: Deploy Check
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
