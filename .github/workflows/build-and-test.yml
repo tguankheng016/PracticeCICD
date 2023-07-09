@@ -7,9 +7,8 @@ on:
 
 jobs:
   build:
-
+    name: Build And Test
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -27,3 +26,16 @@ jobs:
     - name: Test
       run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-build --verbosity normal
 
+  deploy-staging:
+    needs: build
+    name: Deploy To Staging
+    runs-on: windows-latest
+    steps:
+    - run: echo "Is Staging"
+  
+  deploy-prod:
+    needs: [build, deploy-staging]
+    name: Deploy To Prod
+    runs-on: windows-latest
+    steps:
+    - run: echo "Is Prod"
