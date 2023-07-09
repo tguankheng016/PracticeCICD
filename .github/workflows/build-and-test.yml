@@ -23,7 +23,7 @@ jobs:
     - name: Restore Test Proj Dependencies
       run: dotnet restore ./CICDUnitTest/CICDUnitTest.csproj
     - name: Build Test Proj
-      run: dotnet test ./TestCICD/TestCICD.csproj --no-restore
+      run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-restore
     - name: Test
       run: dotnet test ./CICDUnitTest/CICDUnitTest.csproj --no-build --verbosity normal
 
